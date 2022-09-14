@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h2>Inscription</h2>
+    {# injecter la variable form envoyé depuis le controller et demander au template de créer le formulaire avec la méthode form de twig #}
+    {{ form_start(form) }}
+    <div class="my-custom-class-for-errors">
+        {{ form_errors(form) }}
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.email) }}
+            {{ form_row(form.password) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
