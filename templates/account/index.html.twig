@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Espace client{% endblock %}
+
+{% block content %}
+<div>
+    <h2>Bienvenu dans votre espace client {{ app.user.firstname }}</h2>
+    <a href="/reset-password">Modifier mon mot de passe </a>
+</div>
+{% endblock %}
