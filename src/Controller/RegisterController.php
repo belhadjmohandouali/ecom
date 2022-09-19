@@ -27,7 +27,9 @@ class RegisterController extends AbstractController
     #[Route('/inscription', name: 'app_register')]
     public function index(Request $request, UserPasswordHasherInterface $passwordHasher): Response
     {
-       $user = new User();
+        $success = null;
+        $fail=null;
+        $user = new User();
        //instancier formulaire
        $form = $this->createForm(RegisterType::class,$user);
        //ecouter la requete post
@@ -45,8 +47,14 @@ class RegisterController extends AbstractController
             //enregistrer les données du form
             $doctrine->flush();
            // dd($user);
+            $success = "Votre compte a bien été crée";
+
         }
 
-       return $this->render('register/index.html.twig',['form' => $form->createView()]);
+       return $this->render('register/index.html.twig',[
+           'form' => $form->createView(),
+           'success' => $success
+
+       ]);
     }
 }
