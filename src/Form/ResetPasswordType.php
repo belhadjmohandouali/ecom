@@ -27,8 +27,9 @@ class ResetPasswordType extends AbstractType
             ->add('lastname', TextType::class, [
                 'disabled' => true
             ])
-            ->add('password', PasswordType::class, [
+            ->add('old_password', PasswordType::class, [
                 'label' => "Mon mot de passe actuel",
+                'mapped' =>false,
                 'attr' => [
                     'placeholder' => "Saisissez votre mot de passe actuel"
                 ]
