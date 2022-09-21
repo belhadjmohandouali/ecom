@@ -48,6 +48,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         return [
+            //les elements du menu ( on trouve les icones ici : https://fontawesome.com/ )
             MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
 
             //MenuItem::section('Blog'),
