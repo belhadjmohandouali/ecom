@@ -1,11 +1,13 @@
+body {
+    position: relative;
+}
 .navbar-item-custom, .navbar-item-custom a {
     color: #fff;
 }
 
 .footer-custom {
     text-align: center;
-    position: fixed;
-    bottom: 0;
+    position: absolute;
     width: 100%;
     background-color: #dfeaff;
     padding-top: 20px;
@@ -14,6 +16,12 @@
     width:200px;
     height: 250px;
 }
+
+.img-fluid-item {
+    width:400px;
+    height: 500px;
+}
+
 .product-item {
     margin-top: 50px;
 }
@@ -35,4 +43,15 @@
     font-weight: bold;
     display: block;
     margin-bottom: 10px;
+}
+.product-container {
+    margin-bottom: 150px;
+}
+
+.product-page-price {
+    font-size: 20px;
+}
+
+.product-item-container {
+    margin-top: 100px;
 }
