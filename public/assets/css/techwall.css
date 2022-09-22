@@ -55,3 +55,7 @@ body {
 .product-item-container {
     margin-top: 100px;
 }
+
+.content-header {
+    background-color: white;
+}
