@@ -55,6 +55,12 @@
                 </li>
             </ul>
             <div class="navbar-item-custom">
+                {% if cart is defined %}
+                    <a href="{{ path('cart') }}">
+                    <img class="logo-panier" src={{ asset("assets/img/panier.png")}} >
+                    </a>
+                    <a> | </a>
+                {% endif %}
                 {% if app.user %}
                     <a href="{{ path('app_account') }}">{{ app.user.firstname }}</a> | <a href="{{ path("app_logout") }}">Se déconnecter</a>
                 {% else %}
