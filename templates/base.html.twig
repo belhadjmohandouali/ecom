@@ -42,7 +42,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/stat">Stats <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/admin">Stats <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ path('app_product') }}">Nos produits <span class="sr-only">(current)</span></a>
@@ -55,18 +55,22 @@
                 </li>
             </ul>
             <div class="navbar-item-custom">
-                {% if cart is defined %}
-                    <a href="{{ path('cart') }}">
-                    <img class="logo-panier" src={{ asset("assets/img/panier.png")}} >
-                    </a>
-                    <a> | </a>
-                {% endif %}
+
                 {% if app.user %}
                     <a href="{{ path('app_account') }}">{{ app.user.firstname }}</a> | <a href="{{ path("app_logout") }}">Se déconnecter</a>
                 {% else %}
                     <a href="{{ path("app_login") }}">Connexion</a> |  <a href="{{ path("app_register") }}">Inscription</a>
                 {% endif %}
+
             </div>
+
+
+                <a href="{{ path('cart') }}">
+                    <img class="logo-panier" src={{ asset("assets/img/panier.png")}} >
+                </a>
+            {% if cart is defined and cart %}
+                <div class="cercle"></div>
+            {% endif %}
 
         </div>
     </nav>
