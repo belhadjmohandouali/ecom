@@ -43,7 +43,7 @@ class RegisterType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => "Votre Email",
                 'required' => true,
-                'invalid_message' => 'Veuillez saisir une adresse email valide',
+                'invalid_message' => 'Veuillez saisir une addresse email valide',
                 'attr' => [
                     'placeholder' => "Votre Email"
                 ]

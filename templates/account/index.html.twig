@@ -5,6 +5,7 @@
 {% block content %}
 <div>
     <h2>Bienvenu dans votre espace client {{ app.user.firstname }}</h2>
-    <a href="/reset-password">Modifier mon mot de passe </a>
+    <a href="{{ path('reset_password') }}">Modifier mon mot de passe </a><br>
+    <a href="{{ path('app_account_address') }}">Gérer mes addresses </a>
 </div>
 {% endblock %}
