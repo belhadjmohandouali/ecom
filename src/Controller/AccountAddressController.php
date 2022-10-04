@@ -47,8 +47,52 @@ class AccountAddressController extends AbstractController
 
             }
 
-            return $this->render('account/address_add.html.twig', [
+            return $this->render('account/address_form.html.twig', [
                 'form' => $form->createView(),
             ]);
         }
+
+    #[Route('/account/address_edit/{id}', name: 'app_account_address_edit')]
+    public function edit(Request $request, $id): Response
+    {
+        $address = $this->entitymanager->getRepository(Address::class)->findOneById($id);
+
+        if(!$address || $address->getUser() != $this->getUser()){
+            return $this->redirectToRoute('app_account_address');
+        }
+
+        $form = $this->createForm(AddressType::class, $address);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $doctrine = $this->entitymanager->getManager();
+            $doctrine->flush($address);
+            return $this->redirectToRoute('app_account_address');
+
+        }
+
+        return $this->render('account/address_form.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/account/address_delete/{id}', name: 'app_account_address_delete')]
+    public function delete(Request $request, $id): Response
+    {
+        $address = $this->entitymanager->getRepository(Address::class)->findOneById($id);
+        $delete =false;
+        if($address || $address->getUser() == $this->getUser()){
+            $doctrine = $this->entitymanager->getManager();
+            $doctrine->remove($address);
+            $doctrine->flush($address);
+
+        }
+        $delete = "l'adresse a bien été supprimée";
+        return $this->render('/account/address.html.twig',[
+            'delete' => $delete
+
+        ]);
+
+        /*return $this->redirectToRoute('app_account_address');*/
+    }
 }

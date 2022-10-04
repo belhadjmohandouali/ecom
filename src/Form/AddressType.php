@@ -43,7 +43,8 @@ class AddressType extends AbstractType
             ->add('adresse',TextType::class,[
                 'label'=> 'Votre addresse',
                 'attr'=> [
-                    'placeholder'=>"Saisissez Votre addresse"
+                    'placeholder'=>"Saisissez Votre addresse",
+                    'required' => false
                 ]
             ])
             ->add('postal',TextType::class,[
@@ -71,7 +72,7 @@ class AddressType extends AbstractType
                 ]
             ])
             ->add('submit', SubmitType::class,[
-                'label'=>'Ajouter une addresse',
+                'label'=>'Valider',
                 'attr'=> [
                     'class'=>"btn-block btn-info"
                 ]
