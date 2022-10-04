@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller\Admin;
+use App\Entity\Carrier;
 use App\Entity\Category;
 use App\Entity\Product;
 use App\Entity\User;
@@ -55,8 +56,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class),
             MenuItem::linkToCrud('Catégories', 'fa fa-list', Category::class),
             MenuItem::linkToCrud('Produits', 'fa fa-tag', Product::class),
-
-
+            MenuItem::linkToCrud('Transporteurs', 'fa fa-truck', Carrier::class),
         ];
     }
 
