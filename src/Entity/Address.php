@@ -48,6 +48,10 @@ class Address
     {
         return $this->id;
     }
+    public function setId($id): ?int
+    {
+        $this->id = $id;
+    }
 
     public function getUser(): ?User
     {

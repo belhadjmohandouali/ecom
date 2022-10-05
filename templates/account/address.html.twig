@@ -11,9 +11,15 @@
         <a href="{{ path('app_account') }}">Retour</a>
     </div>
     <hr>
-    {% if delete is defined and delete %}
-    <div class="alert alert-danger">{{ delete }}</div>
-    {% endif %}
+
+    {% for messages in app.flashes(['success', 'error', 'notice']) %}
+        {% for message in messages %}
+            <div class="alert alert-info text-center">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
     {% if app.user.addresses|length==0 %}
         <p>Vous n'avez pas encore ajouté une adresse dans votre compte client, pour en ajouter une, veuillez <a href="">cliquer ici </a></p>
     {% else %}
@@ -24,11 +30,43 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ address.name }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ address.adresse }} <br/> {{ address.postal }} {{ address.city }} </h6>
-                        <a href="{{ path('app_account_address_edit', {'id': address.id}) }}" class="">Modifier</a>   <a href="{{ path('app_account_address_delete', {'id': address.id}) }}" class="float-right delete" style="color: red">Supprimer</a>
-
-{#*****************************************#}
-
-{#**************************************#}
+                        <a href="{{ path('app_account_address_edit', {'id': address.id}) }}" class="">Modifier</a>
+                        <a href="#" data-id="{{ path('app_account_address_duplicate', {'id': address.id}) }}" data-toggle="modal" data-target="#duplicateAddress" class="adressEdit " style="margin-left: 50px;color: grey;">Dupliquer</a>
+                        <a href="#" data-id="{{ path('app_account_address_delete', {'id': address.id}) }}" data-toggle="modal" data-target="#deleteAddress" class="float-right adressEdit" style="color: red">Supprimer</a>
+                        <script type="application/javascript">
+                            $(document).on("click", ".adressEdit", function () {
+                                var myBookId = $(this).data('id');
+                                $(".modal-footer #confirm").attr("href", myBookId );
+                            });
+                        </script>
+                {# modal delete #}
+                        <div class="modal fade" id="deleteAddress" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <p>Voulez vous supprimer cette adresse ?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Non</button>
+                                        <a id="confirm" class="btn btn-info" href="" >Confirmer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {# modal duplicate #}
+                        <div class="modal fade" id="duplicateAddress" tabindex="-1" aria-labelledby="myDuplicateModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <p>Voulez vous supprimer cette adresse ?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Non</button>
+                                        <a id="confirm" class="btn btn-info" href="" >Confirmer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -36,28 +74,6 @@
         {% endfor %}
         </div>
 
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Launch demo modal
-        </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button  type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     {% endif %}
 {% endblock %}
