@@ -26,6 +26,9 @@ class OrderDetails
     #[ORM\Column]
     private ?float $total = null;
 
+    #[ORM\Column]
+    private ?float $price = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class OrderDetails
     public function setTotal(float $total): self
     {
         $this->total = $total;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }
