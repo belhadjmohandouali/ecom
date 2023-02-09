@@ -38,7 +38,7 @@ class RegisterController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             //recupérer les infos du formulaire dans la variable $user
             $user = $form->getData();
-            $password = $passwordHasher->hashPassword($user,$user->getPassword());$password = $passwordHasher->hashPassword($user,$user->getPassword());$password = $passwordHasher->hashPassword($user,$user->getPassword());
+            $password = $passwordHasher->hashPassword($user,$user->getPassword());
             $user->setPassword($password);
             //créer un objet doctrine
             $doctrine =  $this->entityManager->getManager();
